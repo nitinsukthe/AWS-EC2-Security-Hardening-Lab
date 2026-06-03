@@ -21,8 +21,7 @@ The lab follows real-world cloud security practices including:
 - Least Privilege Access Control
 - CloudWatch Monitoring & Alerting
 
-The project was built using AWS Free Tier services and documented as a professional cloud security portfolio project.
-
+The project was built using AWS Free Tier services.
 ---
 
 # Project Objectives
@@ -468,7 +467,7 @@ Potential improvements for future iterations:
 
 This project demonstrates foundational cloud security skills including AWS infrastructure deployment, Linux security hardening, access control management, cloud monitoring, and security best practices.
 
-The implementation reflects practical security engineering concepts used in cloud environments and serves as a portfolio-ready cloud security project.
+The implementation reflects practical security engineering concepts used in cloud environments.
 
 ---
 
