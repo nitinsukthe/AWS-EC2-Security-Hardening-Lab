@@ -113,7 +113,7 @@ Opened AWS EC2 Dashboard and initiated secure instance deployment.
 
 ### Screenshot
 
-![Launch EC2](screenshots/01-launch-ec2-instance.png)
+![Launch EC2](screenshots/1.Launch%20EC2%20Instance.png)
 
 ---
 
