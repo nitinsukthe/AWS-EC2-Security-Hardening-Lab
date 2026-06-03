@@ -3,7 +3,7 @@
 ![AWS](https://img.shields.io/badge/AWS-Cloud%20Security-orange)
 ![Linux](https://img.shields.io/badge/Linux-Security-blue)
 ![CloudWatch](https://img.shields.io/badge/CloudWatch-Monitoring-red)
-![Status](https://img.shields.io/badge/Project-Completed-success)
+
 
 ---
 
