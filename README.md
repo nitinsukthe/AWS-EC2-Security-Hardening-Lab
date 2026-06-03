@@ -114,6 +114,11 @@ Opened AWS EC2 Dashboard and initiated secure instance deployment.
 ### Screenshot
 
 ![Launch EC2](screenshots/1.Launch%20EC2%20Instance.png)
+![Launch EC2](screenshots/2.Choose%20Instance%20OS.png)
+![Launch EC2](screenshots/3.Choose%20Instance%20type.png)
+![Launch EC2](screenshots/4.Create%new%20Key%20pair.png)
+![Launch EC2](screenshots/5.Save%20Safe%20cloud-%20key%20file.png)
+
 
 ---
 
