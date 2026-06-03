@@ -114,11 +114,6 @@ Opened AWS EC2 Dashboard and initiated secure instance deployment.
 ### Screenshot
 
 ![Launch EC2](screenshots/1.Launch%20EC2%20Instance.png)
-![Launch EC2](screenshots/2.Choose%20Instance%20OS.png)
-![Launch EC2](screenshots/3.Choose%20Instance%20type.png)
-![Launch EC2](screenshots/4.Create%new%20Key%20pair.png)
-![Launch EC2](screenshots/5.Save%20Safe%20cloud-%20key%20file.png)
-
 
 ---
 
@@ -136,7 +131,7 @@ This reduces unauthorized remote access attempts.
 
 ### Screenshot
 
-![Security Group Rules](screenshots/02-security-group-rules.png)
+![Security Group Rules](screenshots/8.Security%20Group%20rules.png)
 
 ---
 
@@ -152,7 +147,7 @@ Expected result:
 
 ### Screenshot
 
-![EC2 Running](screenshots/03-ec2-running.png)
+![EC2 Running](screenshots/11.EC2%20Dashboard%20showing%20Instance%20running.png)
 
 ---
 
@@ -178,7 +173,7 @@ Connection to the EC2 server verified successful deployment and key-based access
 
 ### Screenshot
 
-![SSH Login](screenshots/04-successful-ssh-login.png)
+![SSH Login](screenshots/14.Successful%20Login%20and.png)
 
 ---
 
@@ -216,7 +211,7 @@ This follows **Least Privilege Access Control** practices.
 
 ### Screenshot
 
-![Create Security User](screenshots/05-create-security-user.png)
+![Create Security User](screenshots/17.Create%20New%20Security%20User.png)
 
 ---
 
@@ -263,7 +258,7 @@ sudo grep -E "PermitRootLogin|PasswordAuthentication|MaxAuthTries|X11Forwarding"
 
 ### Screenshot
 
-![SSH Verification](screenshots/06-ssh-config-verification.png)
+![SSH Verification](screenshots/28.Verify%20Configuration.png)
 
 ---
 
@@ -309,7 +304,7 @@ SNS email notifications were enabled for alert delivery.
 
 ### Screenshot
 
-![CloudWatch Metric](screenshots/07-cloudwatch-alarm-metric.png)
+![CloudWatch Metric](screenshots/31.Create%20Alarm-%20Select%20Metric.png)
 
 ---
 
@@ -319,7 +314,7 @@ Successful monitoring deployment verified.
 
 ### Screenshot
 
-![Alarm Status](screenshots/08-cloudwatch-alarm-ok.png)
+![Alarm Status](screenshots/36.Alarm%20State%20OK.png)
 
 ---
 # Security Controls Implemented
