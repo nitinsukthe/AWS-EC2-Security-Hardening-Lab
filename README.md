@@ -1,20 +1,45 @@
 # AWS EC2 Security Hardening & Monitoring Lab
 
-## Project Overview
+![AWS](https://img.shields.io/badge/AWS-Cloud%20Security-orange)
+![Linux](https://img.shields.io/badge/Linux-Security-blue)
+![CloudWatch](https://img.shields.io/badge/CloudWatch-Monitoring-red)
+![Status](https://img.shields.io/badge/Project-Completed-success)
 
-This project demonstrates a hands-on **Cloud Security implementation on AWS** by deploying, securing, hardening, and monitoring an EC2 instance.
+---
 
-The lab follows industry security best practices including:
+# Project Overview
 
-- Secure EC2 deployment
+This project demonstrates a practical **Cloud Security implementation on AWS** focused on deploying, securing, hardening, and monitoring an Amazon EC2 instance.
+
+The lab follows real-world cloud security practices including:
+
+- Secure AWS EC2 deployment
 - Security Group hardening
-- SSH key-based authentication
-- Linux server hardening
+- SSH Key Authentication
+- Linux Server Hardening
+- SSH Security Configuration
 - Least Privilege Access Control
-- SSH configuration hardening
-- CloudWatch monitoring & alerting
+- CloudWatch Monitoring & Alerting
 
-This project was completed as a practical cloud security portfolio project using **AWS Free Tier services**.
+The project was built using AWS Free Tier services and documented as a professional cloud security portfolio project.
+
+---
+
+# Project Objectives
+
+The goal of this project was to:
+
+✔ Deploy a secure AWS EC2 environment
+
+✔ Configure restrictive network access policies
+
+✔ Implement secure SSH authentication
+
+✔ Harden Linux server configuration
+
+✔ Configure monitoring & alerting
+
+✔ Demonstrate foundational cloud security skills
 
 ---
 
@@ -22,15 +47,26 @@ This project was completed as a practical cloud security portfolio project using
 
 ```plaintext
 Local Machine
-      │
-      │ SSH Key Authentication
-      ▼
+     │
+     │ SSH Key Authentication
+     ▼
 AWS EC2 Instance (Amazon Linux 2023)
-      │
-      ├── Security Group (My IP only)
-      ├── SSH Hardening
-      ├── Linux User Privilege Management
-      └── CloudWatch Monitoring + SNS Alerts
+     │
+     ├── Security Group Hardening
+     │      └── SSH Restricted To My IP
+     │
+     ├── Linux Hardening
+     │      ├── Package Updates
+     │      ├── Admin User Creation
+     │      └── Least Privilege Access
+     │
+     ├── SSH Security Hardening
+     │      ├── Root Login Disabled
+     │      ├── Password Login Disabled
+     │      └── MaxAuthTries Configured
+     │
+     └── CloudWatch Monitoring
+            └── SNS Email Alerts
 ```
 
 ---
@@ -39,110 +75,161 @@ AWS EC2 Instance (Amazon Linux 2023)
 
 | Technology | Purpose |
 |------------|----------|
-| AWS EC2 | Cloud Compute Instance |
+| AWS EC2 | Cloud Compute |
 | Amazon Linux 2023 | Server Operating System |
 | Security Groups | Network Access Control |
 | SSH | Secure Remote Access |
-| Linux Administration | System Hardening |
-| AWS CloudWatch | Monitoring & Alerting |
-| SNS | Email Notifications |
+| Linux Administration | Host Hardening |
+| CloudWatch | Monitoring |
+| SNS | Alert Notifications |
 
 ---
 
-# Project Workflow
+# Implementation Walkthrough
 
 ---
 
-## 1. Launch Secure EC2 Instance
+# Exercise 1 — Launch Secure AWS EC2 Instance
 
-Configured an AWS EC2 instance using **Amazon Linux 2023** and **t3.micro Free Tier**.
+The first stage of the project involved deploying a secure EC2 instance inside AWS.
 
-### Configuration:
+## Configuration Used
 
-- Region: Mumbai (`ap-south-1`)
-- Instance Type: `t3.micro`
-- Key Pair Authentication
-- Secure Network Configuration
+| Setting | Value |
+|----------|--------|
+| Region | ap-south-1 (Mumbai) |
+| OS | Amazon Linux 2023 |
+| Instance Type | t3.micro |
+| Authentication | SSH Key Pair |
+| Storage | Default |
+
+The EC2 instance was launched using AWS Console and configured using Free Tier eligible resources.
+
+---
+
+## Step 1 — Launch EC2 Instance
+
+Opened AWS EC2 Dashboard and initiated secure instance deployment.
 
 ### Screenshot
 
-![Launch EC2](screenshots/1.Launch%20EC2%20Instance.png)
+![Launch EC2](screenshots/01-launch-ec2-instance.png)
 
 ---
 
-## 2. Configure Security Group Rules
+## Step 2 — Configure Security Group Rules
 
-Implemented restrictive network controls using AWS Security Groups.
+Security Groups were configured using the principle of **minimum exposure**.
 
-### Security Rule:
+SSH access was restricted using:
 
-| Type | Port | Source |
-|------|------|------|
+| Protocol | Port | Source |
+|----------|------|---------|
 | SSH | 22 | My IP Only |
 
-This reduces unauthorized remote access exposure.
+This reduces unauthorized remote access attempts.
 
 ### Screenshot
 
-![Security Group Rules](screenshots/8.Security%20Group%20rules.png)
+![Security Group Rules](screenshots/02-security-group-rules.png)
 
 ---
 
-## 3. Verify Running EC2 Deployment
+## Step 3 — Verify EC2 Deployment
 
-Confirmed successful instance deployment and operational status.
+After launch completion, the instance status was verified.
+
+Expected result:
+
+- Running state
+- Health checks passed
+- Public IPv4 assigned
 
 ### Screenshot
 
-![EC2 Running Instance](screenshots/11.EC2%20Dashboard%20showing%20Instance%20running.png)
+![EC2 Running](screenshots/03-ec2-running.png)
 
 ---
 
-## 4. Secure SSH Access
+# Exercise 2 — Connect Securely To EC2
 
-Connected securely to EC2 using downloaded private key authentication.
+SSH key authentication was used to establish secure remote access.
 
-### Command Used
+---
+
+## SSH Command Used
 
 ```bash
 ssh -i cloud-key.pem ec2-user@PUBLIC-IP
 ```
 
-### Screenshot
-
-![SSH Login](screenshots/14.Successful%20Login%20and%20.png)
+Windows PowerShell and Linux terminal both support this connection method.
 
 ---
 
-## 5. Linux Security Hardening
+## Successful Authentication
 
-Applied Linux hardening controls to strengthen server security posture.
+Connection to the EC2 server verified successful deployment and key-based access.
 
-### Actions Performed
+### Screenshot
 
-- Updated packages
-- Created dedicated admin user
-- Configured sudo privileges
-- Applied access control separation
+![SSH Login](screenshots/04-successful-ssh-login.png)
 
-### Commands Used
+---
+
+# Exercise 3 — Linux Security Hardening
+
+After successful login, Linux hardening procedures were applied.
+
+---
+
+## Update System Packages
+
+Security updates were installed to ensure the operating system contained the latest patches.
+
+### Command
 
 ```bash
 sudo dnf update -y
+```
+
+---
+
+## Create Dedicated Administrative User
+
+A separate administrative account was created.
+
+### Commands
+
+```bash
 sudo adduser cloudadmin
 sudo passwd cloudadmin
 sudo usermod -aG wheel cloudadmin
 ```
 
+This follows **Least Privilege Access Control** practices.
+
 ### Screenshot
 
-![Create Security User](screenshots/17.Create%20New%20Security%20User.png)
+![Create Security User](screenshots/05-create-security-user.png)
 
 ---
 
-## 6. SSH Hardening Configuration
+# SSH Security Hardening
 
-Configured secure SSH settings to reduce attack surface.
+SSH configuration was hardened to reduce brute-force and credential-based attacks.
+
+---
+
+## Secure SSH Configuration
+
+The SSH daemon configuration file was modified:
+
+### File
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
 
 ### Security Controls Applied
 
@@ -153,103 +240,7 @@ MaxAuthTries 3
 X11Forwarding no
 ```
 
-### Validation Command
-
-```bash
-sudo grep -E "PermitRootLogin|PasswordAuthentication|MaxAuthTries|X11Forwarding" /etc/ssh/sshd_config
-```
-
-### Screenshot
-
-![SSH Configuration Verification](screenshots/28.Verify%20Configuration.png)
-
 ---
-
-## 7. CloudWatch Monitoring & Alerting
-
-Configured AWS CloudWatch monitoring for proactive infrastructure visibility.
-
-### Monitoring Configuration
-
-- Metric: CPUUtilization
-- Threshold: >80%
-- SNS Email Notification
-- Alarm Status Monitoring
-
-### Screenshot
-
-![Create Alarm](screenshots/31.Create%20Alarm-%20Select%20Metric.png)
-
----
-
-![Create Alarm](screenshots/33.Configure%20Threshold.png)
-
----
-
-## 8. CloudWatch Alarm Status
-
-Validated successful alarm deployment and monitoring configuration.
-
-### Screenshot
-
-![Alarm State](screenshots/36.Alarm%20State%20OK.png)
-
----
-
-# Security Controls Implemented
-
-## Identity & Access Management
-
-- SSH Key Authentication
-- Separate Administrative User
-- Sudo Privilege Management
-- Principle of Least Privilege
-
-## Network Security
-
-- Security Group Hardening
-- SSH Restricted to Trusted IP
-
-## Host Security
-
-- Linux Package Updates
-- SSH Configuration Hardening
-- Root Login Disabled
-- Password Authentication Disabled
-
-## Monitoring & Detection
-
-- CloudWatch Metrics
-- Alarm Threshold Configuration
-- SNS Email Notifications
-
----
-
-# Key Commands Used
-
-## Update Server
-
-```bash
-sudo dnf update -y
-```
-
-## Create User
-
-```bash
-sudo adduser cloudadmin
-```
-
-## Add Admin Privileges
-
-```bash
-sudo usermod -aG wheel cloudadmin
-```
-
-## Edit SSH Config
-
-```bash
-sudo nano /etc/ssh/sshd_config
-```
 
 ## Restart SSH Service
 
@@ -259,34 +250,357 @@ sudo systemctl restart sshd
 
 ---
 
+## Validate Configuration
+
+```bash
+sudo grep -E "PermitRootLogin|PasswordAuthentication|MaxAuthTries|X11Forwarding" /etc/ssh/sshd_config
+```
+
+### Screenshot
+
+![SSH Verification](screenshots/06-ssh-config-verification.png)
+
+---
+
+# Exercise 4 — Configure Security Group Firewall Controls
+
+AWS Security Groups functioned as the cloud firewall layer.
+
+Firewall controls were reviewed to ensure:
+
+- SSH restricted to trusted IP
+- No unrestricted inbound exposure
+- Controlled access policy enforced
+
+These settings align with cloud network security best practices.
+
+---
+
+# Exercise 5 — Configure CloudWatch Monitoring
+
+AWS CloudWatch monitoring was configured to provide infrastructure visibility and alerting.
+
+---
+
+## Alarm Configuration
+
+Metric selected:
+
+```plaintext
+EC2 → CPUUtilization
+```
+
+Threshold configured:
+
+```plaintext
+CPU > 80%
+```
+
+SNS email notifications were enabled for alert delivery.
+
+---
+
+## Create Monitoring Alarm
+
+### Screenshot
+
+![CloudWatch Metric](screenshots/07-cloudwatch-alarm-metric.png)
+
+---
+
+## Alarm Status Validation
+
+Successful monitoring deployment verified.
+
+### Screenshot
+
+![Alarm Status](screenshots/08-cloudwatch-alarm-ok.png)
+
+---
+# Security Controls Implemented
+
+This project applied multiple layers of cloud security controls across infrastructure, host security, access management, and monitoring.
+
+---
+
+## Identity & Access Security
+
+Implemented controls:
+
+✔ SSH Key Authentication
+
+✔ Dedicated Administrative User
+
+✔ Least Privilege Access Control
+
+✔ Sudo Privilege Management
+
+---
+
+## Network Security
+
+Configured AWS Security Groups to reduce attack exposure.
+
+Controls implemented:
+
+✔ SSH restricted to trusted IP
+
+✔ No unrestricted inbound SSH exposure
+
+✔ Controlled firewall configuration
+
+---
+
+## Host Security
+
+Linux server hardening controls applied:
+
+✔ System Package Updates
+
+✔ Root Login Disabled
+
+✔ Password Authentication Disabled
+
+✔ SSH Configuration Hardening
+
+✔ Brute Force Risk Reduction
+
+---
+
+## Monitoring & Detection
+
+Monitoring visibility established using AWS CloudWatch.
+
+Implemented:
+
+✔ CPU Utilization Monitoring
+
+✔ CloudWatch Alarm Configuration
+
+✔ SNS Email Notifications
+
+✔ Alerting Workflow
+
+---
+
+# Key Commands Used
+
+## Update Linux Packages
+
+```bash
+sudo dnf update -y
+```
+
+---
+
+## Create Administrative User
+
+```bash
+sudo adduser cloudadmin
+```
+
+---
+
+## Assign Administrative Privileges
+
+```bash
+sudo usermod -aG wheel cloudadmin
+```
+
+---
+
+## Edit SSH Configuration
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+---
+
+## Restart SSH Service
+
+```bash
+sudo systemctl restart sshd
+```
+
+---
+
+## SSH Connection Command
+
+```bash
+ssh -i cloud-key.pem ec2-user@PUBLIC-IP
+```
+
+---
+
+# Repository Structure
+
+```plaintext
+aws-ec2-security-hardening-lab/
+│
+├── README.md
+│
+├── screenshots/
+│   ├── 01-launch-ec2-instance.png
+│   ├── 02-security-group-rules.png
+│   ├── 03-ec2-running.png
+│   ├── 04-successful-ssh-login.png
+│   ├── 05-create-security-user.png
+│   ├── 06-ssh-config-verification.png
+│   ├── 07-cloudwatch-alarm-metric.png
+│   └── 08-cloudwatch-alarm-ok.png
+│
+├── docs/
+│   ├── Architecture.md
+│   ├── Security-Checklist.md
+│   ├── Incident-Response-Notes.md
+│   └── Lessons-Learned.md
+│
+├── commands/
+│   ├── aws-commands.md
+│   ├── linux-hardening.md
+│   └── ssh-commands.md
+│
+├── configs/
+│   └── sshd_config_hardened.conf
+│
+├── reports/
+│   └── Cloud-Security-Project-Report.md
+│
+├── assets/
+│   └── architecture-diagram.png
+│
+└── .gitignore
+```
+
+---
+
+# Documentation Included
+
+This repository contains supporting documentation to provide enterprise-style project organization.
+
+---
+
+## docs/
+
+### Architecture.md
+
+Documents the AWS environment design and security architecture.
+
+### Security-Checklist.md
+
+Contains implemented security verification checklist.
+
+### Incident-Response-Notes.md
+
+Provides detection, response, and remediation notes for security incidents.
+
+### Lessons-Learned.md
+
+Summarizes technical and operational learning outcomes.
+
+---
+
+## commands/
+
+Stores reusable technical commands used during implementation.
+
+Files included:
+
+- aws-commands.md
+- linux-hardening.md
+- ssh-commands.md
+
+---
+
+## configs/
+
+Contains hardened configuration examples.
+
+### sshd_config_hardened.conf
+
+Example secure SSH daemon configuration:
+
+```plaintext
+PermitRootLogin no
+PasswordAuthentication no
+MaxAuthTries 3
+X11Forwarding no
+```
+
+---
+
+## reports/
+
+Contains professional project reporting documentation.
+
+### Cloud-Security-Project-Report.md
+
+Includes:
+
+- Executive Summary
+- Security Controls
+- Findings
+- Recommendations
+- Lessons Learned
+
+---
+
 # Lessons Learned
 
-Through this project I gained practical experience with:
+Through this project I gained practical experience in:
 
 - AWS EC2 deployment
 - Cloud infrastructure security
-- Linux server administration
+- Linux administration
+- Security Group management
 - SSH hardening
-- Network access control
-- Cloud monitoring & alerting
-- Security best practices in AWS environments
+- Least privilege access control
+- CloudWatch monitoring
+- Security alerting workflows
 
 ---
 
 # Future Improvements
 
-Potential enhancements for this project:
+Potential improvements for future iterations:
 
-- IAM Role Implementation
+- AWS IAM Policies & Roles
+- CloudTrail Logging
 - AWS GuardDuty Integration
 - AWS Config Compliance Rules
-- AWS CloudTrail Logging
-- Automated Infrastructure using Terraform
+- Terraform Infrastructure Automation
 - Vulnerability Scanning Integration
 
 ---
 
-## Author
+# Resume Project Version
+
+## AWS EC2 Security Hardening & Monitoring Lab
+
+### Resume Bullet Points
+
+• Deployed and secured AWS EC2 infrastructure using Amazon Linux 2023.
+
+• Configured restrictive Security Groups allowing SSH access only from trusted IP ranges.
+
+• Implemented Linux hardening, dedicated administrative user management, and SSH security controls.
+
+• Applied SSH key authentication, disabled password-based login, and reduced brute-force exposure.
+
+• Configured AWS CloudWatch monitoring and SNS alert notifications for proactive visibility.
+
+---
+
+# Conclusion
+
+This project demonstrates foundational cloud security skills including AWS infrastructure deployment, Linux security hardening, access control management, cloud monitoring, and security best practices.
+
+The implementation reflects practical security engineering concepts used in cloud environments and serves as a portfolio-ready cloud security project.
+
+---
+
+# Author
 
 **Nitin Sukthe**
 
