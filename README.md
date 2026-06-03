@@ -180,7 +180,9 @@ Configured AWS CloudWatch monitoring for proactive infrastructure visibility.
 
 ![Create Alarm](screenshots/31.Create%20Alarm-%20Select%20Metric.png)
 
-![Create Alarm](screenshots/33.Configure%20Threshould.png)
+---
+
+![Create Alarm](screenshots/33.Configure%20Threshold.png)
 
 ---
 
