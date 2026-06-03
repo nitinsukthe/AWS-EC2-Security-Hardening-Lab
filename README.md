@@ -306,6 +306,8 @@ SNS email notifications were enabled for alert delivery.
 
 ![CloudWatch Metric](screenshots/31.Create%20Alarm-%20Select%20Metric.png)
 
+![CloudWatch Metric](screenshots/33.Configure%20Threshould.png)
+
 ---
 
 ## Alarm Status Validation
