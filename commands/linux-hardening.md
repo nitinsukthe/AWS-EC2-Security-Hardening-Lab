@@ -1,6 +1,6 @@
-# Linux Hardening Commands
+# Linux Hardening
 
-## Update System
+## Update Packages
 
 ```bash
 sudo dnf update -y
@@ -12,20 +12,8 @@ sudo dnf update -y
 sudo adduser cloudadmin
 ```
 
-## Add Sudo Privileges
+## Assign Sudo
 
 ```bash
 sudo usermod -aG wheel cloudadmin
-```
-
-## SSH Hardening
-
-```bash
-sudo nano /etc/ssh/sshd_config
-```
-
-## Restart SSH
-
-```bash
-sudo systemctl restart sshd
 ```
