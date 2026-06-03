@@ -1,0 +1,41 @@
+                    ┌──────────────────────────────┐
+                    │        Local Machine         │
+                    │   (Windows/Linux Terminal)   │
+                    └──────────────┬───────────────┘
+                                   │
+                                   │ SSH Key Authentication
+                                   │ cloud-key.pem
+                                   ▼
+        ┌───────────────────────────────────────────────────────────┐
+        │                    AWS Cloud (Mumbai Region)             │
+        │                        ap-south-1                        │
+        │                                                           │
+        │   ┌──────────────────────────────────────────────────┐     │
+        │   │              EC2 Instance (t3.micro)            │     │
+        │   │            Amazon Linux 2023 Server             │     │
+        │   │                                                  │     │
+        │   │  Linux Hardening                                │     │
+        │   │  ├── Package Updates                            │     │
+        │   │  ├── cloudadmin User                            │     │
+        │   │  ├── wheel Privileges                           │     │
+        │   │  └── Least Privilege Access                     │     │
+        │   │                                                  │     │
+        │   │ SSH Hardening                                   │     │
+        │   │  ├── PermitRootLogin no                         │     │
+        │   │  ├── PasswordAuthentication no                  │     │
+        │   │  ├── MaxAuthTries 3                             │     │
+        │   │  └── X11Forwarding no                           │     │
+        │   └──────────────────────────────────────────────────┘     │
+        │                          ▲                                 │
+        │                          │                                 │
+        │                 Security Group Firewall                    │
+        │                 SSH Port 22 → My IP Only                   │
+        │                                                           │
+        │                          │                                 │
+        │                          ▼                                 │
+        │                 AWS CloudWatch Monitoring                  │
+        │                CPUUtilization Alarm (>80%)                │
+        │                          │                                 │
+        │                          ▼                                 │
+        │                  SNS Email Notification                    │
+        └───────────────────────────────────────────────────────────┘
