@@ -172,7 +172,7 @@ Connection to the EC2 server verified successful deployment and key-based access
 
 ### Screenshot
 
-![SSH Login](screenshots/14.Successful%20Login%20and.png)
+![SSH Login](screenshots/14.Successful%20Login.png)
 
 ---
 
