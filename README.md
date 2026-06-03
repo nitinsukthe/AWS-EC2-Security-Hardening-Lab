@@ -180,6 +180,7 @@ Configured AWS CloudWatch monitoring for proactive infrastructure visibility.
 
 ![Create Alarm](screenshots/31.Create%20Alarm-%20Select%20Metric.png)
 
+
 ---
 
 ## 8. CloudWatch Alarm Status
@@ -279,34 +280,6 @@ Potential enhancements for this project:
 - AWS CloudTrail Logging
 - Automated Infrastructure using Terraform
 - Vulnerability Scanning Integration
-
----
-
-# Project Structure
-
-```plaintext
-AWS-EC2-Security-Hardening-Lab/
-│
-├── README.md
-├── screenshots/
-├── docs/
-│   └── Security-Checklist.md
-├── commands/
-│   └── linux-hardening.md
-└── assets/
-```
-
----
-
-# Resume Version
-
-### AWS EC2 Security Hardening & Monitoring Lab
-
-- Deployed and secured AWS EC2 infrastructure using Amazon Linux 2023.
-- Implemented SSH hardening and least-privilege access control.
-- Configured restrictive Security Groups allowing access only from trusted IPs.
-- Established CloudWatch monitoring and SNS alert notifications.
-- Applied Linux security hardening techniques for cloud-hosted workloads.
 
 ---
 
